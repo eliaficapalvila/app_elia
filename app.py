@@ -10,7 +10,7 @@ import json
 app = Flask(__name__)
 
 app.config['MONGO_DBNAME'] = 'foodb'
-app.config['MONGO_URI'] = 'mongodb://localhost:27017/foodb'
+app.config['MONGO_URI'] = 'mongodb://andreu:agiledata1@ds123753.mlab.com:23753/foodb'
 
 mongo = PyMongo(app)
 
