@@ -13,60 +13,59 @@
     {# Add simple CSS style tweaks here. #}
   </style>
   <script>
-    $(function() {
-      {# Add page-load JavaScript here. #}
-    });
-  </script>
-  <script>
-  $(function() {
-    $(".product-delete-link").on("click", function() {
-      var delete_url = $(this).attr('data-delete-url');
-      $.ajax({
-        url: delete_url,
-        type: 'DELETE',
-        success: function(response) {
-          if (response.status == 'OK') {
-            window.location = {{ url_for('products_list') }};
-          } else {
-            alert('Delete failed.')
-          }
-        }
-      });
-      return false;
-    });
-  });
-  </script>
+      $(function() {
+        $(".product-delete-link").on("click", function() {
+                                     var delete_url = $(this).attr('data-delete-url');
+                                     $.ajax({
+                                            url: delete_url,
+                                            type: 'DELETE',
+                                            success: function(response) {
+                                            if (response.status == 'OK') {
+                                            window.location = {{ url_for('products_list') }};
+                                            } else {
+                                            alert('Delete failed.')
+                                            }
+                                            }
+                                            });
+                                     return false;
+                                     });
+        });
+      </script>
   {% block extra_head %}{% endblock extra_head %}
 </head>
 <body>
-  <div class="navbar navbar-static-top">
-    <div class="navbar-inner">
-    <div class="container">
-      <a href="{{ url_for('products_list') }}" class="brand">Products</a>
-      {% if current_user.is_authenticated %}
-      <ul class="nav">
-              <li><a href="{{ url_for('product_create') }}">Create a new Product</a></li>
-            </ul>
-       <ul class="nav pull-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.username }} <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    <div class="navbar navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a href="{{ url_for('products_list') }}" class="brand">Products</a>
+                {% if current_user.is_authenticated %}
+                <ul class="nav">
+                    <li><a href="{{ url_for('product_create') }}">Create a new Product</a></li>
                 </ul>
-              </li>
-            </ul>
-            {% else %}
-            <ul class="nav pull-right">
-              <li><a href="{{ url_for('login') }}">Login</a></li>
-            </ul>
-            {% endif %}
-
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ current_user.username }} <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="nav pull-right">
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                </ul>
+                {% endif %}
+                
+            </div>
+        </div>
     </div>
-   </div>
-  </div>
-  <div class="content container">
-    {% block main %}{% endblock main %}
-  </div>
-  </div>
+    <div class="content container">
+        {% block main %}{% endblock main %}
+    </div>
+    </div>
 </body>
+
 </html>
+
+
+

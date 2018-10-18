@@ -18,10 +18,3 @@
   {% endfor %}
 </div>
 {% endblock main %}
-And changes the main root of the web to point to index.html :
-
-from flask import render_template
-
-@app.route('/')
-def index():
-  return redirect(url_for('products_list'))
